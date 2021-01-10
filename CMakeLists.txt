@@ -49,6 +49,14 @@ option(gRPC_BUILD_CODEGEN "Build codegen" ON)
 option(gRPC_BUILD_CSHARP_EXT "Build C# extensions" ON)
 option(gRPC_BACKWARDS_COMPATIBILITY_MODE "Build libraries that are binary compatible across a larger number of OS and libc versions" OFF)
 
+# set cmake variables
+list(APPEND CMAKE_PREFIX_PATH "$ENV{CONDA_PREFIX}/share/catkin/cmake")
+
+# Find Catkin
+find_package(catkin REQUIRED)
+# Declare this project as a catkin package
+catkin_package()
+
 set(gRPC_INSTALL_default ON)
 if(NOT CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
   # Disable gRPC_INSTALL by default if building as a submodule
