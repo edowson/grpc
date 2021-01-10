@@ -22,7 +22,9 @@ if(gRPC_CARES_PROVIDER STREQUAL "module")
     # See https://github.com/grpc/grpc/issues/17255
     set(HAVE_LIBNSL OFF CACHE BOOL "avoid cares dependency on libnsl")
   endif()
-  add_subdirectory("${CARES_ROOT_DIR}" third_party/cares/cares)
+  if(EXISTS "${CARES_ROOT_DIR}/CMakeLists.txt")
+    add_subdirectory("${CARES_ROOT_DIR}" third_party/cares/cares)
+  endif()
 
   if(TARGET c-ares)
     set(_gRPC_CARES_LIBRARIES c-ares)
